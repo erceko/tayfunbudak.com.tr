@@ -121,6 +121,14 @@ Akış: 4 anasayfa önizlemesi → seçim / karma → iç sayfa şablonları (ha
 
 **Ortak bileşenler:** başlık + dil değiştirici, mobil alt bar (WhatsApp/Ara/Randevu), hastalık kartları, "Belirtiler / Tanı / Tedavi / SSS" sayfa şablonu, CTA bandı, adres + harita bloğu, footer (KVKK linkleri, sosyal medya, DoktorTakvimi).
 
+**Hero için alınan kararlar** (tasarım turlarında netleşti):
+- **Fotoğraf:** mevcut sitedeki gibi mavi-lacivert tonlu ameliyathane fonunda, siyah formalı fotoğraf. Takım elbiseli portre ve muayenehane fotoğrafı hero'da kullanılmaz.
+- **Logo:** her zaman renkli sürüm. Bu yüzden başlık şeridi açık renkli (beyaz) olur; beyaz logo kullanılmaz.
+- **Motto:** "Önce zarar verme." hero'da yer almaz. Doktor için önemli olduğundan sitenin başka bir yerinde (ör. Özgeçmiş) Latincesiyle birlikte kullanılabilir.
+- **Yazı tipi:** yalnızca sans-serif.
+- **ED1000** en önemli hizmet olarak hero'da ya da hemen altında öne çıkarılır.
+- **Sağlık Turizmi Yetki Belgesi** hiçbir yerde kullanılmaz (bkz. §9).
+
 ---
 
 ## 6. İçerik düzenleme kuralları
