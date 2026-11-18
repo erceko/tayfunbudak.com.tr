@@ -1,0 +1,75 @@
+---
+const links = [
+  { href: '#hekiminiz', label: 'Özgeçmiş' },
+  { href: '#hastaliklar', label: 'Hastalıklar' },
+  { href: '#ed1000', label: 'ED1000' },
+  { href: '#sss', label: 'Sık sorulanlar' },
+  { href: '#randevu', label: 'İletişim' },
+];
+---
+<header class="hd">
+  <div class="hd-in">
+    <a href="/" aria-label="Ürolog Op. Dr. Tayfun Budak — Ana sayfa" class="hd-logo"><img src="/img/logo.png" alt="Ürolog Op. Dr. Tayfun Budak" width="157" height="48" /></a>
+    <nav class="v9-nav hd-nav" aria-label="Ana menü">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <span class="hd-lang"><a href="/" aria-current="page" class="hd-on">TR</a> · <a href="#" lang="en">EN</a></span>
+      <a href="#randevu" class="hd-cta">Randevu Al</a>
+    </nav>
+    <button class="v9-menu hd-menu" type="button" aria-expanded="false" aria-controls="mobil-menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      <span>Menü</span>
+    </button>
+  </div>
+  <div id="mobil-menu" class="hd-panel" hidden>
+    <nav aria-label="Mobil menü">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="#randevu" class="hd-cta hd-cta-m">Randevu Al</a>
+    </nav>
+  </div>
+</header>
+
+<style is:global>
+.hd{position:relative;z-index:30;background:#ffffff;border-bottom:1px solid #e6e8ef}
+.hd-in{max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hd-logo{display:block;line-height:0}
+.hd-logo img{height:48px;width:auto}
+.hd-nav{gap:26px;align-items:center;font-size:15px;font-weight:600}
+.hd-nav>a{color:#201444;text-decoration:none}
+.hd-nav>a:hover{color:#ac1f2d}
+.hd-lang{color:#5b6075;font-size:14px}
+.hd-lang a{display:inline-block;padding:6px 2px;color:#5b6075;text-decoration:none}
+.hd-lang a.hd-on{color:#201444;font-weight:800}
+.hd-nav a.hd-cta,.hd-cta{background:#ac1f2d;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:12px;font-weight:700}
+.hd-nav a.hd-cta:hover,.hd-cta:hover{background:#8e1825;color:#ffffff}
+.hd-menu{align-items:center;gap:8px;border:1px solid #d9dde7;background:#ffffff;color:#201444;border-radius:12px;padding:10px 16px;font:inherit;font-weight:700;min-height:44px;cursor:pointer}
+.hd-menu[aria-expanded="true"]{background:#201444;border-color:#201444;color:#ffffff}
+.hd-panel{position:absolute;left:0;right:0;top:100%;background:#ffffff;border-bottom:1px solid #e6e8ef;box-shadow:0 18px 40px rgba(32,20,68,.14)}
+.hd-panel nav{display:flex;flex-direction:column;max-width:1240px;margin:0 auto;padding:6px 20px 20px}
+.hd-panel nav a{display:flex;align-items:center;min-height:52px;border-bottom:1px solid #eeebf6;color:#201444;font-size:17px;font-weight:700;text-decoration:none}
+.hd-panel nav a.hd-cta-m{justify-content:center;margin-top:16px;border:0;border-radius:12px}
+.hd a:focus-visible,.hd button:focus-visible{outline:2px solid #ac1f2d;outline-offset:3px;border-radius:8px}
+@media (min-width: 1021px){.hd-panel{display:none!important}}
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.hd-menu');
+  const panel = document.getElementById('mobil-menu');
+  if (btn && panel) {
+    const label = btn.querySelector('span');
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      if (label) label.textContent = open ? 'Kapat' : 'Menü';
+    };
+    btn.addEventListener('click', () => set(panel.hidden));
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) {
+        set(false);
+        btn.focus();
+      }
+    });
+  }
+</script>

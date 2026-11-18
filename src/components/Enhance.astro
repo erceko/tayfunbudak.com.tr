@@ -1,0 +1,131 @@
+---
+// Small progressive enhancements for the homepage: click-to-load videos and map,
+// and form validation. The site works without JavaScript (links fall back to YouTube / Google Maps).
+---
+<style is:global>
+.s8-in.is-bad{border-color:#c0283a;background:#fff7f8}
+.s8-em{display:flex;align-items:flex-start;gap:6px;margin-top:6px;font-size:13.5px;font-weight:600;line-height:1.4;color:#b3202f}
+.s8-sum{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:12px;background:#fff1f3;border:1px solid #f3c2c9;color:#8f1a27;font-size:14.5px;line-height:1.45}
+.s8-kv.is-bad input{outline:2px solid #c0283a;outline-offset:2px}
+.s8-done{display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 8px 12px}
+.s8-done .s8-dic{display:inline-flex;width:64px;height:64px;margin-bottom:18px;border-radius:50%;align-items:center;justify-content:center;background:#201444;box-shadow:0 0 0 10px #efeafa}
+.s8-done h3{margin:0;font-size:22px;font-weight:800;color:#201444}
+.s8-done p{margin:10px 0 0;max-width:340px;font-size:15.5px;line-height:1.55;color:#4c4766}
+.s8-done a{font-weight:800;color:#201444}
+.s5-v.is-playing .s5-th{background:#000}
+.s5-v.is-playing iframe,.s8-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+
+<script>
+  // Videos: play in place on click (youtube-nocookie), otherwise the link opens YouTube.
+  document.querySelectorAll<HTMLAnchorElement>('a.s5-v').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = new URL(a.href).searchParams.get('v');
+      if (!id) return;
+      e.preventDefault();
+      const card = document.createElement('div');
+      card.className = a.className + ' is-playing';
+      card.innerHTML = a.innerHTML;
+      a.replaceWith(card);
+      const th = card.querySelector('.s5-th');
+      const title = card.querySelector('.s5-vt')?.textContent ?? 'Video';
+      if (th) {
+        th.innerHTML = '';
+        const f = document.createElement('iframe');
+        f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        f.title = title;
+        f.allow = 'autoplay; encrypted-media; picture-in-picture';
+        f.allowFullscreen = true;
+        th.appendChild(f);
+      }
+    });
+  });
+
+  // Map: load Google Maps only when asked.
+  const mapBtn = document.querySelector<HTMLAnchorElement>('.s8-mb');
+  const map = document.querySelector<HTMLElement>('.s8-map');
+  if (mapBtn && map) {
+    mapBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const f = document.createElement('iframe');
+      f.src = 'https://www.google.com/maps?q=Mim+Kemal+%C3%96ke+Cad.+No%3A11+Ni%C5%9Fanta%C5%9F%C4%B1+%C5%9Ei%C5%9Fli+%C4%B0stanbul&output=embed';
+      f.title = 'Muayenehanenin haritadaki yeri';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      map.innerHTML = '';
+      map.appendChild(f);
+    });
+  }
+
+  // Appointment form: validate; the test build does not send anything yet.
+  const form = document.querySelector<HTMLFormElement>('#randevu form');
+  if (form) {
+    form.noValidate = true;
+    const icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5h.01"></path></svg>';
+    const clear = () => {
+      form.querySelectorAll('.s8-em,.s8-sum').forEach((n) => n.remove());
+      form.querySelectorAll('.is-bad').forEach((n) => n.classList.remove('is-bad'));
+      form.querySelectorAll('[aria-invalid]').forEach((n) => n.removeAttribute('aria-invalid'));
+    };
+    const fail = (input: HTMLInputElement, msg: string, holder: Element) => {
+      const id = `${input.name}-hata`;
+      const m = document.createElement('span');
+      m.className = 's8-em';
+      m.id = id;
+      m.innerHTML = icon + msg;
+      holder.appendChild(m);
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', id);
+    };
+    form.addEventListener('input', (e) => {
+      const t = e.target as HTMLInputElement;
+      if (t.getAttribute('aria-invalid')) {
+        t.classList.remove('is-bad');
+        t.closest('.is-bad')?.classList.remove('is-bad');
+        t.removeAttribute('aria-invalid');
+        document.getElementById(`${t.name}-hata`)?.remove();
+      }
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clear();
+      const ad = form.elements.namedItem('ad') as HTMLInputElement;
+      const tel = form.elements.namedItem('telefon') as HTMLInputElement;
+      const kvkk = form.elements.namedItem('kvkk') as HTMLInputElement;
+      const bad: HTMLInputElement[] = [];
+      if (!ad.value.trim()) {
+        ad.classList.add('is-bad');
+        fail(ad, 'Lütfen adınızı ve soyadınızı yazın.', ad.parentElement!);
+        bad.push(ad);
+      }
+      const digits = tel.value.replace(/\D/g, '');
+      if (!digits) {
+        tel.classList.add('is-bad');
+        fail(tel, 'Lütfen telefon numaranızı yazın.', tel.parentElement!);
+        bad.push(tel);
+      } else if (digits.length < 10) {
+        tel.classList.add('is-bad');
+        fail(tel, 'Numara eksik görünüyor. Örnek: 0532 123 45 67', tel.parentElement!);
+        bad.push(tel);
+      }
+      if (!kvkk.checked) {
+        const lab = kvkk.closest('label')!;
+        lab.classList.add('is-bad');
+        fail(kvkk, 'Devam etmek için Aydınlatma Metni’ni onaylayın.', lab.querySelector('span:last-child') ?? lab);
+        bad.push(kvkk);
+      }
+      if (bad.length) {
+        const sum = document.createElement('div');
+        sum.className = 's8-sum';
+        sum.setAttribute('role', 'alert');
+        sum.innerHTML = `${icon}<span><b>Formda ${bad.length} eksik var.</b> Lütfen işaretli alanları düzeltin.</span>`;
+        form.querySelector('.s8-leg')?.after(sum);
+        bad[0].focus();
+        return;
+      }
+      form.innerHTML =
+        '<div class="s8-done" role="status"><span class="s8-dic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5v5.5M12 16.5h.01"></path><circle cx="12" cy="12" r="9"></circle></svg></span>' +
+        '<h3>Bu sayfa test sürümüdür</h3><p>Form henüz gönderim yapmıyor. Randevu için <a href="tel:+902122912222">0 (212) 291 22 22</a> numarasını arayın ya da WhatsApp’tan yazın.</p></div>';
+    });
+  }
+</script>

@@ -1,0 +1,18 @@
+{
+  "name": "tayfunbudak-com-tr",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "wrangler": "^4.164.0"
+  }
+}

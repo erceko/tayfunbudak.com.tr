@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Must match the Worker connected to this repository in the Cloudflare dashboard.
+  "name": "tayfunbudak-com-tr",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

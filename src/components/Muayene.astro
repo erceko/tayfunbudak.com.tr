@@ -1,0 +1,50 @@
+<section id="muayene" class="s6-sec" aria-labelledby="s6-t">
+<div class="s6-wrap">
+<div class="s6-top">
+<p class="s6-eb">İlk muayene</p>
+<h2 class="s6-h2" id="s6-t">Muayene nasıl geçer?</h2>
+<p class="s6-lead">Muayenede neyle karşılaşacağınızı bilmek içinizi rahatlatır. Görüşme dört adımda ilerler.</p>
+</div>
+<ol class="s6-steps">
+<li><span class="s6-n">1</span><h3 class="s6-st">Randevu</h3><p class="s6-sd">Telefonla, WhatsApp’tan ya da internetten randevu alırsınız; size uygun gün ve saati birlikte belirleriz.</p></li>
+<li><span class="s6-n">2</span><h3 class="s6-st">Görüşme</h3><p class="s6-sd">Şikâyetinizi, geçmiş hastalıklarınızı ve kullandığınız ilaçları ayrıntılı olarak konuşuruz.</p></li>
+<li><span class="s6-n">3</span><h3 class="s6-st">Muayene ve tetkikler</h3><p class="s6-sd">Muayenenin ardından gerekirse idrar ve kan tahlilleri (PSA gibi) ya da ultrasonla tanıyı netleştiririz.</p></li>
+<li><span class="s6-n">4</span><h3 class="s6-st">Tedavi planı</h3><p class="s6-sd">Bulguları size açıkça anlatır; tedavi seçeneklerini, yararlarını ve risklerini birlikte değerlendirerek size uygun planı oluştururuz.</p></li>
+</ol>
+<div class="s6-tip"><span class="s6-ti"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="13" rx="2"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2M12 11v5M9.5 13.5h5"></path></svg></span><p style="margin: 0;"><b>Gelirken yanınıza alın</b><span>Varsa önceki tahlil ve görüntüleme sonuçlarınızı ve kullandığınız ilaçların listesini getirin.</span></p></div>
+</div>
+</section>
+
+<style is:global>
+.s6-sec{position:relative}
+.s6-wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.s6-eb{display:flex;align-items:center;gap:12px;margin:0 0 16px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#ac1f2d}
+.s6-eb::before{content:"";width:28px;height:2px;background:currentColor}
+.s6-h2{margin:0 0 18px;font-size:clamp(30px,3.1vw,44px);line-height:1.12;font-weight:800;letter-spacing:-.025em;color:#201444}
+.s6-lead{margin:0;font-size:18px;line-height:1.65;color:#4c4766;max-width:640px}
+.s6-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 24px;border-radius:12px;background:#ac1f2d;color:#ffffff;font-weight:700;text-decoration:none;transition:background .2s}
+.s6-btn:hover{background:#8e1825;color:#ffffff}
+.s6-btnO{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:13px 22px;border-radius:12px;border:1.5px solid #201444;color:#201444;font-weight:700;text-decoration:none;transition:background .2s,color .2s}
+.s6-btnO:hover{background:#201444;color:#ffffff}
+.s6-more{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#201444;text-decoration:none}
+.s6-more svg{transition:transform .2s}
+.s6-more:hover{color:#ac1f2d}
+.s6-more:hover svg{transform:translateX(4px)}
+.s6-sec a:focus-visible{outline:2px solid #ac1f2d;outline-offset:3px;border-radius:10px}
+@media (max-width: 900px){.s6-lead{font-size:17px}}
+
+.s6-sec{background:#f6f4fb;padding:104px 0}
+.s6-top{max-width:720px;margin-bottom:48px}
+.s6-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:st}
+.s6-steps li{position:relative;padding:26px 22px 24px;border-radius:18px;background:#ffffff;border:1px solid #e9e4f5}
+.s6-n{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#201444;color:#ffffff;font-size:16px;font-weight:800}
+.s6-steps li:not(:last-child)::after{content:"";position:absolute;top:45px;right:-17px;width:18px;height:2px;background:#d9d1ee}
+.s6-st{margin:18px 0 8px;font-size:18px;font-weight:800;line-height:1.3;color:#201444}
+.s6-sd{margin:0;font-size:15.5px;line-height:1.6;color:#4c4766}
+.s6-tip{display:flex;align-items:flex-start;gap:16px;margin-top:24px;padding:20px 22px;border-radius:16px;background:#ffffff;border:1px dashed #d6cdee}
+.s6-tip .s6-ti{flex:none;width:44px;height:44px;border-radius:12px;background:#fbe7ea;color:#ac1f2d;display:inline-flex;align-items:center;justify-content:center}
+.s6-tip b{display:block;font-size:16px;font-weight:800;color:#201444}
+.s6-tip span{display:block;margin-top:2px;font-size:15.5px;line-height:1.55;color:#4c4766}
+@media (max-width: 1020px){.s6-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.s6-steps li::after{display:none}}
+@media (max-width: 640px){.s6-sec{padding:72px 0}.s6-steps{grid-template-columns:1fr;gap:12px}.s6-top{margin-bottom:32px}}
+</style>

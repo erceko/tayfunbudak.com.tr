@@ -1,0 +1,58 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+
+const physician = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  name: 'Op. Dr. Tayfun Budak',
+  medicalSpecialty: 'Urologic',
+  url: 'https://tayfunbudak.com.tr/',
+  telephone: '+902122912222',
+  image: 'https://tayfunbudak.com.tr/img/dr-tayfun-budak-portre.webp',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Harbiye Mah. Mim Kemal Öke Cad. No:11 Kat:4',
+    addressLocality: 'Şişli',
+    addressRegion: 'İstanbul',
+    postalCode: '34367',
+    addressCountry: 'TR',
+  },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '17:30' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '10:00', closes: '14:30' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/drtayfunbudak/',
+    'https://www.youtube.com/channel/UCmUzRUV5jP5EE3zuuJuI8wA',
+    'https://www.facebook.com/drtayfunbudak',
+    'https://www.linkedin.com/in/tayfun-budak-94053b99/',
+    'https://twitter.com/drtayfunbudak',
+  ],
+};
+---
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- TEST PHASE: remove before going live (also public/_headers and public/robots.txt) -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#201444" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href="https://tayfunbudak.com.tr/" />
+    <link rel="preload" as="image" href="/img/dr-tayfun-budak.webp" />
+    <script type="application/ld+json" set:html={JSON.stringify(physician)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

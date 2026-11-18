@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Sayfa bulunamadı – Op. Dr. Tayfun Budak" description="Aradığınız sayfa bulunamadı.">
+  <Header />
+  <main class="nf">
+    <p class="nf-code">404</p>
+    <h1>Aradığınız sayfa bulunamadı</h1>
+    <p>Sayfa taşınmış ya da kaldırılmış olabilir.</p>
+    <p class="nf-links"><a href="/">Ana sayfaya dönün</a> · <a href="tel:+902122912222">0 (212) 291 22 22</a></p>
+  </main>
+  <Footer />
+</Base>
+
+<style is:global>
+.nf{max-width:720px;margin:0 auto;padding:96px 24px;text-align:center;background:#ffffff}
+.nf-code{margin:0;font-size:14px;font-weight:800;letter-spacing:.14em;color:#ac1f2d}
+.nf h1{margin:10px 0 12px;font-size:36px;line-height:1.15;color:#201444}
+.nf-links a{font-weight:700}
+</style>

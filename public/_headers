@@ -1,0 +1,3 @@
+# TEST PHASE: keep the site out of search engines. Remove before going live.
+/*
+  X-Robots-Tag: noindex, nofollow

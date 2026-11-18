@@ -53,7 +53,7 @@ Cloudflare Workers (Static Assets) ──► statik HTML/CSS (Astro build)
    └─ Cloudflare DNS → site: Worker (Custom Domain) · MX/SPF/DKIM: SiteGround (değişmez)
 ```
 
-- **Framework:** Astro (güncel kararlı sürüm), TypeScript, Tailwind CSS.
+- **Framework:** Astro 7 (statik çıktı), TypeScript. Stiller bileşenlerin içinde düz CSS olarak yazıldı (tasarım tuvalinden birebir aktarıldı); Tailwind kullanılmıyor.
 - **İçerik:** Astro Content Collections, şemalı Markdown/MDX (`src/content/{sayfalar,hastaliklar,blog,sss}/{tr,en}/…`). Başlık, açıklama ve tarih alanları şemayla doğrulanır; eksik alan olursa build hata verir.
 - **Çoklu dil:** Astro i18n. TR önek almaz (`/prostat/`), EN `/en/` altında (`/en/prostate/`). Her sayfada `hreflang` etiketleri ve dil değiştirici bulunur.
 - **Görseller:** `astro:assets` ile otomatik AVIF/WebP ve boyutlandırma, lazy-load.
