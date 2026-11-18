@@ -173,7 +173,7 @@ Akış: 4 anasayfa önizlemesi → seçim / karma → iç sayfa şablonları (ha
 - [ ] Sitede gösterilecek **YouTube videoları**.
 - [ ] **SSS** için Dr. Budak'ın en sık duyduğu sorular. Yoksa taslağı Claude hazırlar, Dr. Budak onaylar.
 - [ ] **Analitik:** çerezsiz Cloudflare Web Analytics yeterli mi, yoksa GA4'e (çerez onayıyla) devam mı?
-- [ ] Anasayfadaki **"Sağlık Turizmi" logosu** yeni sitede kalacak mı?
+- [x] Anasayfadaki **"Sağlık Turizmi" logosu** yeni sitede kalacak mı? **Hayır.** Sağlık Turizmi Yetki Belgesi (logo, belge görseli, ST-2999 numarası, "Uluslararası hastalar" bölümü ve ilgili SSS sorusu) yeni sitenin hiçbir yerinde kullanılmayacak.
 
 ---
 
